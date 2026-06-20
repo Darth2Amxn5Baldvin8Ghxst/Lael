@@ -1,0 +1,111 @@
+//@version=6
+indicator("Lael Data Relay", overlay=true)
+
+// ============================================================================
+// LAEL TRADING SYSTEM - TradingView Data Relay (v6, chunked payload)
+// Sends OHLC, indicators, and liquidity zones to Lael via webhook
+// ============================================================================
+
+// === INPUTS ===
+webhookUrl   = input.string("https://five-levitator-nickname.ngrok-free.dev/api/tradingview/data", "Webhook URL", tooltip="Set in alert dialog; this is informational")
+sendInterval = input.int(1, "Send Every N Bars", minval=1, maxval=10)
+
+// === INDICATORS ===
+vwapValue = ta.vwap(close)
+
+rsiLength = input.int(14, "RSI Length", group="Indicators")
+rsiValue  = ta.rsi(close, rsiLength)
+
+[macdLine, signalLine, histLine] = ta.macd(close, 12, 26, 9)
+
+bbLength = input.int(20, "BB Length", group="Indicators")
+bbMult   = input.float(2.0, "BB Multiplier", group="Indicators")
+bbBasis  = ta.sma(close, bbLength)
+bbDev    = bbMult * ta.stdev(close, bbLength)
+bbUpper  = bbBasis + bbDev
+bbLower  = bbBasis - bbDev
+
+// === TREND DETECTION ===
+ema20 = ta.ema(close, 20)
+ema50 = ta.ema(close, 50)
+trend = close > ema20 and ema20 > ema50 ? "bullish" : close < ema20 and ema20 < ema50 ? "bearish" : "ranging"
+
+// === VOLATILITY ===
+atrValue   = ta.atr(14)
+atrPercent = (atrValue / close) * 100
+volatility = atrPercent > 2 ? "high" : atrPercent > 1 ? "medium" : "low"
+
+// === LIQUIDITY ZONES ===
+swingHigh = ta.pivothigh(high, 5, 5)
+swingLow  = ta.pivotlow(low, 5, 5)
+
+lookback           = 20
+equalHighThreshold = atrValue * 0.1
+equalLowThreshold  = atrValue * 0.1
+
+var float lastEqualHigh = na
+var float lastEqualLow  = na
+
+for i = 1 to lookback
+    if math.abs(high - high[i]) < equalHighThreshold
+        lastEqualHigh := high
+        break
+
+for i = 1 to lookback
+    if math.abs(low - low[i]) < equalLowThreshold
+        lastEqualLow := low
+        break
+
+// === FAIR VALUE GAP ===
+bullishFVG = low > high[2] and close[1] > open[1]
+bearishFVG = high < low[2] and close[1] < open[1]
+fvgType    = bullishFVG ? "fvg_bullish" : bearishFVG ? "fvg_bearish" : "none"
+fvgPrice   = bullishFVG ? (low + high[2]) / 2 : bearishFVG ? (high + low[2]) / 2 : 0.0
+
+// === BUILD LIQUIDITY ZONES STRING ===
+var string liquidityZonesStr = ""
+liquidityZonesStr := ""
+
+if not na(swingHigh)
+    liquidityZonesStr := liquidityZonesStr + '{"type":"swing_high","price":' + str.tostring(swingHigh) + ',"strength":3,"touched":false},'
+
+if not na(swingLow)
+    liquidityZonesStr := liquidityZonesStr + '{"type":"swing_low","price":' + str.tostring(swingLow) + ',"strength":3,"touched":false},'
+
+if not na(lastEqualHigh)
+    liquidityZonesStr := liquidityZonesStr + '{"type":"equal_high","price":' + str.tostring(lastEqualHigh) + ',"strength":4,"touched":false},'
+
+if not na(lastEqualLow)
+    liquidityZonesStr := liquidityZonesStr + '{"type":"equal_low","price":' + str.tostring(lastEqualLow) + ',"strength":4,"touched":false},'
+
+if fvgType != "none"
+    liquidityZonesStr := liquidityZonesStr + '{"type":"' + fvgType + '","price":' + str.tostring(fvgPrice) + ',"strength":5,"touched":false},'
+
+if str.length(liquidityZonesStr) > 0
+    liquidityZonesStr := str.substring(liquidityZonesStr, 0, str.length(liquidityZonesStr) - 1)
+
+// === BUILD JSON PAYLOAD IN CHUNKS (avoids v6 long-concat parser issue) ===
+p1 = '{"symbol":"' + syminfo.ticker + '","timeframe":"' + str.tostring(timeframe.multiplier) + '","timestamp":' + str.tostring(time)
+p2 = ',"open":' + str.tostring(open) + ',"high":' + str.tostring(high) + ',"low":' + str.tostring(low) + ',"close":' + str.tostring(close) + ',"volume":' + str.tostring(volume)
+p3 = ',"vwap":' + str.tostring(vwapValue) + ',"rsi":' + str.tostring(rsiValue) + ',"macd":' + str.tostring(macdLine) + ',"macd_signal":' + str.tostring(signalLine) + ',"macd_hist":' + str.tostring(histLine)
+p4 = ',"bb_upper":' + str.tostring(bbUpper) + ',"bb_middle":' + str.tostring(bbBasis) + ',"bb_lower":' + str.tostring(bbLower)
+p5 = ',"trend":"' + trend + '","volatility":"' + volatility + '","liquidity_zones":[' + liquidityZonesStr + ']}'
+
+payload = p1 + p2 + p3 + p4 + p5
+
+// === ALERT ===
+shouldSend = bar_index % sendInterval == 0
+if shouldSend
+    alert(payload, alert.freq_all)
+
+// === VISUAL PLOTS ===
+plot(vwapValue, "VWAP", color=color.purple, linewidth=2)
+plot(ema20, "EMA 20", color=color.blue)
+plot(ema50, "EMA 50", color=color.orange)
+plot(bbUpper, "BB Upper", color=color.gray)
+plot(bbLower, "BB Lower", color=color.gray)
+
+bgcolor(bullishFVG ? color.new(color.green, 90) : bearishFVG ? color.new(color.red, 90) : na)
+
+plotshape(swingHigh, "Swing High", shape.triangledown, location.abovebar, color.red, size=size.tiny)
+plotshape(swingLow,  "Swing Low",  shape.triangleup,   location.belowbar, color.green, size=size.tiny)

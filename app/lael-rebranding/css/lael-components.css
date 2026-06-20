@@ -1,0 +1,529 @@
+/**
+ * LAEL UI Components — React/CSS Patterns
+ * 
+ * These are example implementations showing how to apply
+ * the Lael theme to common UI components.
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   CHAT INTERFACE
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Chat container */
+.lael-chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--lael-obsidian);
+}
+
+/* Chat header */
+.lael-chat-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--lael-charcoal-dark);
+  border-bottom: 1px solid var(--lael-border-subtle);
+}
+
+.lael-chat-header__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lael-wine) 0%, var(--lael-crimson) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  position: relative;
+}
+
+.lael-chat-header__avatar-letter {
+  color: var(--lael-rose);
+  font-family: var(--lael-font-brand);
+  font-size: 1.25rem;
+  font-style: italic;
+}
+
+.lael-chat-header__status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--lael-success);
+  border: 2px solid var(--lael-charcoal-dark);
+  animation: lael-pulse 2s ease-in-out infinite;
+}
+
+.lael-chat-header__info {
+  flex: 1;
+}
+
+.lael-chat-header__name {
+  color: var(--lael-rose);
+  font-family: var(--lael-font-brand);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.lael-chat-header__tagline {
+  color: var(--lael-text-muted);
+  font-size: 0.75rem;
+}
+
+/* Chat messages area */
+.lael-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Message bubble - Lael (assistant) */
+.lael-message--assistant {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 85%;
+  align-self: flex-start;
+}
+
+.lael-message--assistant .lael-message__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lael-wine) 0%, var(--lael-crimson) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lael-message--assistant .lael-message__avatar-letter {
+  color: var(--lael-rose);
+  font-family: var(--lael-font-brand);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.lael-message--assistant .lael-message__bubble {
+  background: var(--lael-gradient-message);
+  border: 1px solid var(--lael-border-subtle);
+  border-radius: var(--lael-radius-lg);
+  border-top-left-radius: var(--lael-radius-sm);
+  padding: 0.75rem 1rem;
+}
+
+.lael-message--assistant .lael-message__sender {
+  color: var(--lael-rose);
+  font-family: var(--lael-font-brand);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.lael-message--assistant .lael-message__text {
+  color: var(--lael-text-primary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* Message bubble - User */
+.lael-message--user {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 85%;
+  align-self: flex-end;
+}
+
+.lael-message--user .lael-message__bubble {
+  background-color: var(--lael-wine);
+  border: 1px solid var(--lael-wine-light);
+  border-radius: var(--lael-radius-lg);
+  border-top-right-radius: var(--lael-radius-sm);
+  padding: 0.75rem 1rem;
+}
+
+.lael-message--user .lael-message__text {
+  color: var(--lael-text-primary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* Chat input area */
+.lael-chat-input {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--lael-charcoal-dark);
+  border-top: 1px solid var(--lael-border-subtle);
+}
+
+.lael-chat-input__field {
+  flex: 1;
+  background-color: var(--lael-obsidian);
+  color: var(--lael-text-primary);
+  border: 1px solid var(--lael-border-default);
+  border-radius: var(--lael-radius-lg);
+  padding: 0.75rem 1rem;
+  font-family: var(--lael-font-ui);
+  font-size: 0.9375rem;
+  resize: none;
+  min-height: 44px;
+  max-height: 120px;
+}
+
+.lael-chat-input__field:focus {
+  outline: none;
+  border-color: var(--lael-crimson);
+  box-shadow: 0 0 0 2px rgba(107, 15, 26, 0.2);
+}
+
+.lael-chat-input__field::placeholder {
+  color: var(--lael-text-muted);
+}
+
+.lael-chat-input__send {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--lael-crimson);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--lael-transition-fast);
+}
+
+.lael-chat-input__send:hover {
+  background-color: var(--lael-crimson-hover);
+  box-shadow: var(--lael-glow-crimson);
+}
+
+.lael-chat-input__send:active {
+  background-color: var(--lael-crimson-active);
+  transform: scale(0.95);
+}
+
+.lael-chat-input__send svg {
+  width: 20px;
+  height: 20px;
+  color: var(--lael-text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIGNAL CARD (embedded in chat)
+   ═══════════════════════════════════════════════════════════════ */
+
+.lael-signal-card {
+  background: var(--lael-gradient-card);
+  border: 1px solid var(--lael-border-default);
+  border-left: 3px solid var(--lael-crimson);
+  border-radius: var(--lael-radius-lg);
+  padding: 1rem;
+  margin-top: 0.5rem;
+}
+
+.lael-signal-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.lael-signal-card__pair {
+  color: var(--lael-text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.lael-signal-card__direction {
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--lael-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.lael-signal-card__direction--long {
+  background-color: var(--lael-success-bg);
+  color: var(--lael-success);
+  border: 1px solid var(--lael-success);
+}
+
+.lael-signal-card__direction--short {
+  background-color: var(--lael-danger-bg);
+  color: var(--lael-danger);
+  border: 1px solid var(--lael-danger);
+}
+
+.lael-signal-card__levels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.lael-signal-card__level {
+  text-align: center;
+}
+
+.lael-signal-card__level-label {
+  color: var(--lael-text-muted);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lael-signal-card__level-value {
+  color: var(--lael-text-primary);
+  font-family: var(--lael-font-mono);
+  font-size: 0.875rem;
+}
+
+.lael-signal-card__level-value--entry {
+  color: var(--lael-rose);
+}
+
+.lael-signal-card__level-value--sl {
+  color: var(--lael-danger);
+}
+
+.lael-signal-card__level-value--tp {
+  color: var(--lael-success);
+}
+
+.lael-signal-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--lael-border-subtle);
+}
+
+.lael-signal-card__rr {
+  color: var(--lael-text-secondary);
+  font-size: 0.75rem;
+}
+
+.lael-signal-card__grade {
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--lael-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.lael-signal-card__grade--a-plus {
+  background-color: rgba(29, 158, 117, 0.2);
+  color: var(--lael-success);
+}
+
+.lael-signal-card__grade--a {
+  background-color: rgba(29, 158, 117, 0.15);
+  color: var(--lael-success);
+}
+
+.lael-signal-card__grade--b-plus {
+  background-color: rgba(212, 160, 23, 0.15);
+  color: var(--lael-warning);
+}
+
+.lael-signal-card__grade--b {
+  background-color: rgba(212, 160, 23, 0.1);
+  color: var(--lael-warning);
+}
+
+.lael-signal-card__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.lael-signal-card__action {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: var(--lael-radius-md);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--lael-transition-fast);
+}
+
+.lael-signal-card__action--execute {
+  background-color: var(--lael-crimson);
+  color: var(--lael-text-primary);
+  border: none;
+}
+
+.lael-signal-card__action--execute:hover {
+  background-color: var(--lael-crimson-hover);
+}
+
+.lael-signal-card__action--decline {
+  background-color: transparent;
+  color: var(--lael-text-secondary);
+  border: 1px solid var(--lael-border-default);
+}
+
+.lael-signal-card__action--decline:hover {
+  border-color: var(--lael-text-muted);
+  color: var(--lael-text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TTP STATUS WIDGET
+   ═══════════════════════════════════════════════════════════════ */
+
+.lael-ttp-status {
+  background: var(--lael-gradient-card);
+  border: 1px solid var(--lael-border-default);
+  border-radius: var(--lael-radius-lg);
+  padding: 1rem;
+}
+
+.lael-ttp-status__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.lael-ttp-status__title {
+  color: var(--lael-rose);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.lael-ttp-status__badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--lael-radius-full);
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.lael-ttp-status__badge--compliant {
+  background-color: var(--lael-success-bg);
+  color: var(--lael-success);
+}
+
+.lael-ttp-status__badge--warning {
+  background-color: var(--lael-warning-bg);
+  color: var(--lael-warning);
+}
+
+.lael-ttp-status__badge--violation {
+  background-color: var(--lael-danger-bg);
+  color: var(--lael-danger);
+}
+
+.lael-ttp-status__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.lael-ttp-status__metric {
+  padding: 0.5rem;
+  background-color: var(--lael-obsidian);
+  border-radius: var(--lael-radius-md);
+}
+
+.lael-ttp-status__metric-label {
+  color: var(--lael-text-muted);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lael-ttp-status__metric-value {
+  color: var(--lael-text-primary);
+  font-family: var(--lael-font-mono);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.lael-ttp-status__metric-bar {
+  height: 4px;
+  background-color: var(--lael-charcoal);
+  border-radius: var(--lael-radius-full);
+  margin-top: 0.25rem;
+  overflow: hidden;
+}
+
+.lael-ttp-status__metric-fill {
+  height: 100%;
+  border-radius: var(--lael-radius-full);
+  transition: width var(--lael-transition-normal);
+}
+
+.lael-ttp-status__metric-fill--safe {
+  background-color: var(--lael-success);
+}
+
+.lael-ttp-status__metric-fill--warning {
+  background-color: var(--lael-warning);
+}
+
+.lael-ttp-status__metric-fill--danger {
+  background-color: var(--lael-danger);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPING INDICATOR
+   ═══════════════════════════════════════════════════════════════ */
+
+.lael-typing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.lael-typing__text {
+  color: var(--lael-text-muted);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.lael-typing__dots {
+  display: flex;
+  gap: 4px;
+}
+
+.lael-typing__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--lael-rose);
+  animation: lael-typing-bounce 1.4s ease-in-out infinite;
+}
+
+.lael-typing__dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.lael-typing__dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.lael-typing__dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes lael-typing-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}

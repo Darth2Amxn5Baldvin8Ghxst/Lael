@@ -1,0 +1,38 @@
+{
+  "id": "lael-trading",
+  "name": "lael-trading",
+  "version": "1.0.0",
+  "description": "Lael Trading System - INB-x TradingPit Analyzer",
+  "entry": "dist/index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "mt5Endpoint": {
+        "type": "string",
+        "default": "/api/mt5"
+      },
+      "mexcEnabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "ttpMonitorEnabled": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  },
+  "tools": [
+    "lael_analyze_execution",
+    "lael_get_mexc_price",
+    "lael_check_ttp_status",
+    "lael_check_trade_compliance",
+    "lael_get_slippage_stats",
+    "lael_get_delay_patterns",
+    "lael_generate_signal",
+    "lael_system_status",
+    "lael_get_tradingview_data",
+    "lael_get_bars",
+    "lael_compare_feeds",
+    "lael_engine_status"
+  ]
+}

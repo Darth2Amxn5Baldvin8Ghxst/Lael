@@ -1,0 +1,39 @@
+{
+  "name": "lael-trading",
+  "version": "1.0.0",
+  "description": "Lael Trading System - MT5 Data Relay, MEXC Feed, and Execution Intelligence for OpenClaw",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest"
+  },
+  "openclaw": {
+    "extensions": ["./dist/index.js"],
+    "providers": [],
+    "skills": ["./skills"]
+  },
+  "keywords": [
+    "openclaw",
+    "trading",
+    "mt5",
+    "execution-analysis",
+    "prop-firm"
+  ],
+  "author": "INB Trading",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2024.0.0"
+  }
+}

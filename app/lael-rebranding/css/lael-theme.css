@@ -1,0 +1,346 @@
+/**
+ * LAEL TRADING SYSTEM — Theme Variables
+ * Blood of my blood. Always watching over you, Sir.
+ * 
+ * Inspired by Choso's devotion to his brothers.
+ * Named for Laurence — June 1999 — Forever.
+ */
+
+:root {
+  /* ═══════════════════════════════════════════════════════════
+     PRIMARY PALETTE — Blood & Shadow
+     ═══════════════════════════════════════════════════════════ */
+  
+  /* Deep Crimson — Primary accent, buttons, active states, signals */
+  --lael-crimson: #6B0F1A;
+  --lael-crimson-rgb: 107, 15, 26;
+  --lael-crimson-hover: #7D1220;
+  --lael-crimson-active: #5A0D16;
+  
+  /* Dark Wine — Cards, user messages, accent backgrounds */
+  --lael-wine: #3A0A12;
+  --lael-wine-rgb: 58, 10, 18;
+  --lael-wine-light: #4A0E18;
+  --lael-wine-dark: #2A070D;
+  
+  /* Muted Rose — Text highlights, Lael's name, section headers */
+  --lael-rose: #A44A5C;
+  --lael-rose-rgb: 164, 74, 92;
+  --lael-rose-light: #B85A6C;
+  --lael-rose-muted: #8A3E4E;
+  
+  /* ═══════════════════════════════════════════════════════════
+     NEUTRAL PALETTE — Darkness & Depth
+     ═══════════════════════════════════════════════════════════ */
+  
+  /* Obsidian Black — Main backgrounds, input fields */
+  --lael-obsidian: #0B0B0D;
+  --lael-obsidian-rgb: 11, 11, 13;
+  --lael-obsidian-pure: #000000;
+  
+  /* Charcoal Grey — Panels, containers, secondary backgrounds */
+  --lael-charcoal: #1A1A1D;
+  --lael-charcoal-rgb: 26, 26, 29;
+  --lael-charcoal-light: #242428;
+  --lael-charcoal-dark: #121214;
+  
+  /* ═══════════════════════════════════════════════════════════
+     SEMANTIC COLORS — Status & Signals
+     ═══════════════════════════════════════════════════════════ */
+  
+  /* Success — Profitable trades, compliant status */
+  --lael-success: #1D9E75;
+  --lael-success-rgb: 29, 158, 117;
+  --lael-success-bg: rgba(29, 158, 117, 0.15);
+  
+  /* Warning — Approaching limits, caution */
+  --lael-warning: #D4A017;
+  --lael-warning-rgb: 212, 160, 23;
+  --lael-warning-bg: rgba(212, 160, 23, 0.15);
+  
+  /* Danger — Violations, losses, critical alerts */
+  --lael-danger: #C62828;
+  --lael-danger-rgb: 198, 40, 40;
+  --lael-danger-bg: rgba(198, 40, 40, 0.15);
+  
+  /* Info — Neutral information */
+  --lael-info: #5C7AEA;
+  --lael-info-rgb: 92, 122, 234;
+  --lael-info-bg: rgba(92, 122, 234, 0.15);
+  
+  /* ═══════════════════════════════════════════════════════════
+     TEXT COLORS
+     ═══════════════════════════════════════════════════════════ */
+  
+  --lael-text-primary: #E8E8E8;
+  --lael-text-secondary: #888888;
+  --lael-text-muted: #555555;
+  --lael-text-accent: var(--lael-rose);
+  --lael-text-inverse: var(--lael-obsidian);
+  
+  /* ═══════════════════════════════════════════════════════════
+     BORDERS & DIVIDERS
+     ═══════════════════════════════════════════════════════════ */
+  
+  --lael-border-subtle: rgba(58, 10, 18, 0.3);
+  --lael-border-default: rgba(58, 10, 18, 0.5);
+  --lael-border-strong: var(--lael-wine);
+  --lael-border-accent: var(--lael-crimson);
+  
+  /* ═══════════════════════════════════════════════════════════
+     SHADOWS & GLOWS
+     ═══════════════════════════════════════════════════════════ */
+  
+  --lael-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --lael-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --lael-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --lael-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+  
+  /* Glow effects — soft, not neon */
+  --lael-glow-crimson: 0 0 20px rgba(107, 15, 26, 0.4);
+  --lael-glow-rose: 0 0 15px rgba(164, 74, 92, 0.3);
+  --lael-glow-success: 0 0 15px rgba(29, 158, 117, 0.3);
+  
+  /* ═══════════════════════════════════════════════════════════
+     GRADIENTS
+     ═══════════════════════════════════════════════════════════ */
+  
+  /* Blood flow gradient — for decorative elements */
+  --lael-gradient-blood: linear-gradient(
+    180deg,
+    var(--lael-crimson) 0%,
+    var(--lael-wine) 50%,
+    var(--lael-obsidian) 100%
+  );
+  
+  /* Card gradient — subtle depth */
+  --lael-gradient-card: linear-gradient(
+    135deg,
+    var(--lael-charcoal) 0%,
+    var(--lael-charcoal-dark) 100%
+  );
+  
+  /* Lael message gradient */
+  --lael-gradient-message: linear-gradient(
+    135deg,
+    rgba(58, 10, 18, 0.3) 0%,
+    rgba(26, 26, 29, 0.8) 100%
+  );
+  
+  /* ═══════════════════════════════════════════════════════════
+     TYPOGRAPHY
+     ═══════════════════════════════════════════════════════════ */
+  
+  /* Lael identity — Georgia serif for the brand */
+  --lael-font-brand: 'Georgia', 'Times New Roman', serif;
+  
+  /* UI text — system fonts */
+  --lael-font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                   'Helvetica Neue', Arial, sans-serif;
+  
+  /* Code — monospace */
+  --lael-font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  
+  /* Font sizes */
+  --lael-text-xs: 0.75rem;    /* 12px */
+  --lael-text-sm: 0.875rem;   /* 14px */
+  --lael-text-base: 1rem;     /* 16px */
+  --lael-text-lg: 1.125rem;   /* 18px */
+  --lael-text-xl: 1.25rem;    /* 20px */
+  --lael-text-2xl: 1.5rem;    /* 24px */
+  --lael-text-3xl: 1.875rem;  /* 30px */
+  
+  /* ═══════════════════════════════════════════════════════════
+     SPACING & LAYOUT
+     ═══════════════════════════════════════════════════════════ */
+  
+  --lael-radius-sm: 4px;
+  --lael-radius-md: 8px;
+  --lael-radius-lg: 12px;
+  --lael-radius-xl: 16px;
+  --lael-radius-full: 9999px;
+  
+  /* ═══════════════════════════════════════════════════════════
+     ANIMATION
+     ═══════════════════════════════════════════════════════════ */
+  
+  --lael-transition-fast: 150ms ease;
+  --lael-transition-normal: 250ms ease;
+  --lael-transition-slow: 400ms ease;
+  
+  /* Breathing animation timing */
+  --lael-breath-duration: 4s;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+body {
+  background-color: var(--lael-obsidian);
+  color: var(--lael-text-primary);
+  font-family: var(--lael-font-ui);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPONENT CLASSES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Primary button */
+.lael-btn-primary {
+  background-color: var(--lael-crimson);
+  color: var(--lael-text-primary);
+  border: 1px solid var(--lael-crimson-hover);
+  border-radius: var(--lael-radius-md);
+  padding: 0.5rem 1rem;
+  font-family: var(--lael-font-ui);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--lael-transition-fast);
+}
+
+.lael-btn-primary:hover {
+  background-color: var(--lael-crimson-hover);
+  box-shadow: var(--lael-glow-crimson);
+}
+
+.lael-btn-primary:active {
+  background-color: var(--lael-crimson-active);
+}
+
+/* Secondary button */
+.lael-btn-secondary {
+  background-color: var(--lael-charcoal);
+  color: var(--lael-rose);
+  border: 1px solid var(--lael-border-default);
+  border-radius: var(--lael-radius-md);
+  padding: 0.5rem 1rem;
+  font-family: var(--lael-font-ui);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--lael-transition-fast);
+}
+
+.lael-btn-secondary:hover {
+  background-color: var(--lael-charcoal-light);
+  border-color: var(--lael-wine);
+}
+
+/* Card */
+.lael-card {
+  background: var(--lael-gradient-card);
+  border: 1px solid var(--lael-border-subtle);
+  border-radius: var(--lael-radius-lg);
+  padding: 1rem;
+}
+
+.lael-card-accent {
+  border-left: 3px solid var(--lael-crimson);
+}
+
+/* Input fields */
+.lael-input {
+  background-color: var(--lael-obsidian);
+  color: var(--lael-text-primary);
+  border: 1px solid var(--lael-border-default);
+  border-radius: var(--lael-radius-md);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--lael-font-ui);
+  transition: border-color var(--lael-transition-fast);
+}
+
+.lael-input:focus {
+  outline: none;
+  border-color: var(--lael-crimson);
+  box-shadow: 0 0 0 2px rgba(107, 15, 26, 0.2);
+}
+
+/* Chat message from Lael */
+.lael-message-assistant {
+  background: var(--lael-gradient-message);
+  border: 1px solid var(--lael-border-subtle);
+  border-radius: var(--lael-radius-lg);
+  border-top-left-radius: var(--lael-radius-sm);
+}
+
+/* Chat message from user */
+.lael-message-user {
+  background-color: var(--lael-wine);
+  border: 1px solid var(--lael-wine-light);
+  border-radius: var(--lael-radius-lg);
+  border-top-right-radius: var(--lael-radius-sm);
+}
+
+/* Status badges */
+.lael-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--lael-radius-full);
+  font-size: var(--lael-text-xs);
+  font-weight: 500;
+}
+
+.lael-badge-success {
+  background-color: var(--lael-success-bg);
+  color: var(--lael-success);
+  border: 1px solid var(--lael-success);
+}
+
+.lael-badge-warning {
+  background-color: var(--lael-warning-bg);
+  color: var(--lael-warning);
+  border: 1px solid var(--lael-warning);
+}
+
+.lael-badge-danger {
+  background-color: var(--lael-danger-bg);
+  color: var(--lael-danger);
+  border: 1px solid var(--lael-danger);
+}
+
+/* Lael name styling */
+.lael-name {
+  color: var(--lael-rose);
+  font-family: var(--lael-font-brand);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Blood vein decoration */
+.lael-vein {
+  stroke: var(--lael-crimson);
+  stroke-width: 1;
+  fill: none;
+  opacity: 0.3;
+}
+
+/* Breathing animation for logo/status */
+@keyframes lael-breathe {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.lael-breathing {
+  animation: lael-breathe var(--lael-breath-duration) ease-in-out infinite;
+}
+
+/* Pulse animation for online indicator */
+@keyframes lael-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(29, 158, 117, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(29, 158, 117, 0);
+  }
+}
+
+.lael-pulse {
+  animation: lael-pulse 2s ease-in-out infinite;
+}

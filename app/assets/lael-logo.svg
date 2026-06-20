@@ -1,0 +1,166 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blood flow gradient -->
+    <linearGradient id="bloodGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B0F1A;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#3A0A12;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0B0B0D;stop-opacity:1"/>
+    </linearGradient>
+    
+    <!-- Core glow gradient -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#A44A5C;stop-opacity:0.8"/>
+      <stop offset="70%" style="stop-color:#6B0F1A;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#3A0A12;stop-opacity:0"/>
+    </radialGradient>
+    
+    <!-- Inner glow -->
+    <radialGradient id="innerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#A44A5C;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#6B0F1A;stop-opacity:1"/>
+    </radialGradient>
+    
+    <!-- Drop shadow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Subtle outer glow -->
+    <filter id="outerGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15" result="blur"/>
+      <feFlood flood-color="#6B0F1A" flood-opacity="0.5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background (transparent for flexibility) -->
+  <!-- <rect width="512" height="512" fill="#0B0B0D"/> -->
+  
+  <!-- === PULSE RINGS === -->
+  <!-- Ring 7 - Outermost -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#3A0A12" stroke-width="0.5" opacity="0.15"/>
+  
+  <!-- Ring 6 -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#3A0A12" stroke-width="0.5" opacity="0.2"/>
+  
+  <!-- Ring 5 -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#3A0A12" stroke-width="0.75" opacity="0.25"/>
+  
+  <!-- Ring 4 -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#6B0F1A" stroke-width="0.75" opacity="0.3"/>
+  
+  <!-- Ring 3 -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#6B0F1A" stroke-width="1" opacity="0.4"/>
+  
+  <!-- Ring 2 -->
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#6B0F1A" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Ring 1 - Closest -->
+  <circle cx="256" cy="256" r="125" fill="none" stroke="#A44A5C" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- === MAIN CORE === -->
+  
+  <!-- Outer glow layer -->
+  <circle cx="256" cy="256" r="100" fill="url(#coreGlow)" filter="url(#outerGlow)"/>
+  
+  <!-- Outer ring of core -->
+  <circle cx="256" cy="256" r="95" fill="none" stroke="#3A0A12" stroke-width="3"/>
+  
+  <!-- Mid core -->
+  <circle cx="256" cy="256" r="85" fill="#3A0A12"/>
+  
+  <!-- Inner blood core -->
+  <circle cx="256" cy="256" r="70" fill="#6B0F1A"/>
+  
+  <!-- Central glow -->
+  <circle cx="256" cy="256" r="55" fill="url(#innerGlow)"/>
+  
+  <!-- Sacred inner ring -->
+  <circle cx="256" cy="256" r="45" fill="none" stroke="#A44A5C" stroke-width="1" opacity="0.6"/>
+  
+  <!-- === THE "L" === -->
+  <text 
+    x="256" 
+    y="280" 
+    text-anchor="middle" 
+    fill="#A44A5C" 
+    font-family="Georgia, 'Times New Roman', serif" 
+    font-size="96" 
+    font-style="italic"
+    font-weight="400"
+    filter="url(#glow)"
+  >L</text>
+  
+  <!-- === CHOSO CROSS MARK === -->
+  <!-- Positioned above the core, like Choso's facial marking -->
+  <g transform="translate(256, 130)">
+    <!-- Horizontal bar -->
+    <rect x="-20" y="-3" width="40" height="6" fill="#6B0F1A" rx="2"/>
+    <!-- Vertical bar -->
+    <rect x="-3" y="-15" width="6" height="30" fill="#6B0F1A" rx="2"/>
+    <!-- Glow effect -->
+    <rect x="-20" y="-3" width="40" height="6" fill="#A44A5C" rx="2" opacity="0.3" filter="url(#glow)"/>
+    <rect x="-3" y="-15" width="6" height="30" fill="#A44A5C" rx="2" opacity="0.3" filter="url(#glow)"/>
+  </g>
+  
+  <!-- === BLOOD VEIN DECORATIONS === -->
+  <!-- Left vein -->
+  <path 
+    d="M 80 256 Q 60 200 80 140 Q 100 100 140 80" 
+    stroke="#6B0F1A" 
+    stroke-width="2" 
+    fill="none" 
+    opacity="0.3"
+    stroke-linecap="round"
+  />
+  <circle cx="140" cy="80" r="4" fill="#6B0F1A" opacity="0.5"/>
+  
+  <!-- Right vein -->
+  <path 
+    d="M 432 256 Q 452 200 432 140 Q 412 100 372 80" 
+    stroke="#6B0F1A" 
+    stroke-width="2" 
+    fill="none" 
+    opacity="0.3"
+    stroke-linecap="round"
+  />
+  <circle cx="372" cy="80" r="4" fill="#6B0F1A" opacity="0.5"/>
+  
+  <!-- Bottom left vein -->
+  <path 
+    d="M 100 350 Q 80 400 100 432 Q 130 460 180 450" 
+    stroke="#6B0F1A" 
+    stroke-width="1.5" 
+    fill="none" 
+    opacity="0.25"
+    stroke-linecap="round"
+  />
+  <circle cx="180" cy="450" r="3" fill="#6B0F1A" opacity="0.4"/>
+  
+  <!-- Bottom right vein -->
+  <path 
+    d="M 412 350 Q 432 400 412 432 Q 382 460 332 450" 
+    stroke="#6B0F1A" 
+    stroke-width="1.5" 
+    fill="none" 
+    opacity="0.25"
+    stroke-linecap="round"
+  />
+  <circle cx="332" cy="450" r="3" fill="#6B0F1A" opacity="0.4"/>
+  
+  <!-- === MICRO BLOOD DROPS === -->
+  <circle cx="110" cy="180" r="2" fill="#6B0F1A" opacity="0.4"/>
+  <circle cx="402" cy="180" r="2" fill="#6B0F1A" opacity="0.4"/>
+  <circle cx="150" cy="400" r="2" fill="#6B0F1A" opacity="0.3"/>
+  <circle cx="362" cy="400" r="2" fill="#6B0F1A" opacity="0.3"/>
+  <circle cx="200" cy="120" r="1.5" fill="#A44A5C" opacity="0.3"/>
+  <circle cx="312" cy="120" r="1.5" fill="#A44A5C" opacity="0.3"/>
+</svg>

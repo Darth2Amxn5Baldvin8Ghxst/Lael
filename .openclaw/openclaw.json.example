@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.23",
+    "lastTouchedAt": "2026-03-28T17:33:18.033Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-28T17:33:17.571Z",
+    "lastRunVersion": "2026.3.23",
+    "lastRunCommand": "configure",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "ollama:default": {
+        "provider": "ollama",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434",
+        "apiKey": "OLLAMA_API_KEY",
+        "api": "ollama",
+        "models": [
+          {
+            "id": "qwen2.5:7b",
+            "name": "qwen2.5:7b",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 32768,
+            "maxTokens": 8192
+          },
+          {
+            "id": "llama3.2:3b",
+            "name": "llama3.2:3b",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 16384,
+            "maxTokens": 8192
+          },
+          {
+            "id": "llama3.1:8b",
+            "name": "llama3.1:8b",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 16384,
+            "maxTokens": 8192
+          },
+          {
+            "id": "deepseek-coder:6.7b",
+            "name": "deepseek-coder:6.7b",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 16384,
+            "maxTokens": 8192
+          },
+          {
+            "id": "mistral:7b-instruct-q4_K_M",
+            "name": "mistral:7b-instruct-q4_K_M",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 16384,
+            "maxTokens": 8192
+          },
+          {
+            "id": "mistral:7b-instruct-q2_K",
+            "name": "mistral:7b-instruct-q2_K",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 16384,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "ollama/qwen2.5:7b"
+      },
+      "models": {
+        "ollama/qwen2.5:7b": {},
+        "ollama/llama3.2:3b": {}
+      },
+      "workspace": "~/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      }
+    }
+  },
+  "tools": {
+    "allow": [
+      "lael_analyze_execution",
+      "lael_get_mexc_price",
+      "lael_check_ttp_status",
+      "lael_check_trade_compliance",
+      "lael_generate_signal",
+      "lael_get_slippage_stats",
+      "lael_get_delay_patterns",
+      "lael_system_status",
+      "lael_get_tradingview_data",
+      "lael_get_bars",
+      "lael_compare_feeds",
+      "lael_engine_status"
+    ]
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "botToken": "YOUR_TELEGRAM_BOT_TOKEN",
+      "allowFrom": [
+        "*"
+      ],
+      "groupPolicy": "open",
+      "streaming": "partial"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "YOUR_GATEWAY_TOKEN"
+    }
+  },
+  "skills": {
+    "entries": {
+      "execution-intelligence": {
+        "enabled": true
+      },
+      "inb-x-strategy": {
+        "enabled": true
+      },
+      "ttp-compliance": {
+        "enabled": true
+      }
+    }
+  },
+  "plugins": {
+    "allow": [
+      "lael-trading",
+      "telegram"
+    ],
+    "entries": {
+      "lael-trading": {
+        "enabled": true,
+        "config": {
+          "mt5Endpoint": "/api/mt5",
+          "mexcEnabled": true,
+          "mexcMode": "rest",
+          "mexcPollIntervalMs": 5000,
+          "mexcSymbols": ["BTCUSDT", "ETHUSDT", "SOLUSDT"],
+          "ttpMonitorEnabled": true,
+          "ttpRules": {
+            "accountSize": 100000,
+            "currentBalance": "YOUR_CURRENT_BALANCE",
+            "phase": 2,
+            "profitTargetPercent": 5,
+            "profitTargetAmount": 5000,
+            "dailyDrawdownPercent": 4,
+            "dailyDrawdownAmount": 4000,
+            "maxDrawdownPercent": 7,
+            "maxDrawdownAmount": 7000,
+            "maxDrawdownFloor": 93000,
+            "drawdownType": "static",
+            "minProfitableDays": 3,
+            "minDailyProfitPercent": 0.5,
+            "minDailyProfitAmount": 500,
+            "minTradingDays": 5,
+            "equityResetTime": "16:15",
+            "equityResetTimezone": "America/Chicago",
+            "inactivityLimitDays": 21,
+            "newsRestrictionMinutes": 2,
+            "newsRestrictionEnabled": true,
+            "newsRestrictionAccountSizes": [100000, 200000],
+            "scalpingAllowed": true,
+            "hftProhibited": true,
+            "singleTradeTargetProhibited": true,
+            "consistencyRequired": true,
+            "consistencyRulePercent": 40,
+            "overnightAllowed": true,
+            "leverage": {
+              "forex": 50,
+              "metals": 10,
+              "energies": 10,
+              "indices": 15,
+              "crypto": 2,
+              "equities": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}
